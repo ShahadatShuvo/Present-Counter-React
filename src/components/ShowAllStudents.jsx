@@ -35,10 +35,18 @@ function ShowAllStudents(props) {
       )}
     </p>
   ));
+
+  const len = props.allStudents.length;
+  const styles = {
+    display: len ? "none" : "block",
+  };
   return (
     <div className="shadow-lg p-3 mb-5 bg-body rounded">
       <h3 className="text-center">All Students</h3>
-      <div className="area">
+      <div>
+        <div style={styles}>
+          <p>List is empty</p>
+        </div>
         <div>{showStudent}</div>
       </div>
     </div>

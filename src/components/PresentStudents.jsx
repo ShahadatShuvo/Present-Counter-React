@@ -20,7 +20,7 @@ function PresentStudents(props) {
   return (
     <div className="shadow-lg p-2 mb-5 bg-body rounded">
       <h3 className="text-center">Present Student</h3>
-      <div className="area">
+      <div>
         <div style={styles}>
           <p>List is empty</p>
         </div>
