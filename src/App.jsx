@@ -16,6 +16,7 @@ function App() {
 
   function onFormHandler(name) {
     if (edit.id === "") {
+      //for new add
       const studentObject = {
         id: "id" + new Date().getTime(),
         name: name,
@@ -23,8 +24,25 @@ function App() {
       };
       setAllStudents((prevAllStudents) => [...prevAllStudents, studentObject]);
     } else {
+      //for edit
       setAllStudents((prevAllStudents) => {
         return prevAllStudents.map((stdObj) => {
+          if (stdObj.id === edit.id) {
+            stdObj = { ...stdObj, name: name };
+          }
+          return stdObj;
+        });
+      });
+      setPresentStudents((prevPresent) => {
+        return prevPresent.map((stdObj) => {
+          if (stdObj.id === edit.id) {
+            stdObj = { ...stdObj, name: name };
+          }
+          return stdObj;
+        });
+      });
+      setAbsentStudents((prevPresent) => {
+        return prevPresent.map((stdObj) => {
           if (stdObj.id === edit.id) {
             stdObj = { ...stdObj, name: name };
           }
@@ -42,6 +60,7 @@ function App() {
     setAllStudents(filteredStudents);
     setEdit({ id: "", name: "" });
   }
+
 
   function onEditHandler(id) {
     const findStudent = allStudents.find((studentObj) => studentObj.id === id);
@@ -89,7 +108,6 @@ function App() {
   }
 
   function onMoveToAbsentHandler(id) {
-    console.log("Toogle clicked " + id);
     setPresentStudents((prevAllPresentStudents) => {
       return prevAllPresentStudents.filter((obj) => obj.id !== id);
     });
